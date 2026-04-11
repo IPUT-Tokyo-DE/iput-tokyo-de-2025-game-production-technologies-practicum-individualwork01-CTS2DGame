@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Transform firePoint;
+
+    Vector2 movement;
 
     float horizontalLimit = 8.0f;
     float blinkInterval = 0.1f;
@@ -24,13 +27,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 pos = transform.position;
-        pos.x += horizontalInput * moveSpeed * Time.deltaTime;
+        pos.x += movement.x * moveSpeed * Time.deltaTime;
         pos.x = Mathf.Clamp(pos.x, -horizontalLimit, horizontalLimit);
         transform.position = pos;
+    }
 
-        if (Input.GetButtonUp("Jump"))
+    private void OnMove(InputValue value)
+    {
+        movement = value.Get<Vector2>();
+    }
+
+    private void OnJump(InputValue value)
+    {
+        if (value.isPressed)
         {
             Instantiate(bullet, firePoint.position, firePoint.rotation);
         }

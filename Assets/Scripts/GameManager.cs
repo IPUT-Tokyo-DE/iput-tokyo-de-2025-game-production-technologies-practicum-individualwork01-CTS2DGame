@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -90,7 +91,11 @@ public class GameManager : MonoBehaviour
     {
         if (waitForRestart)
         {
-            if (Input.GetKeyUp(KeyCode.Return))
+            var keyboard = Keyboard.current;
+            if (keyboard == null) return;
+
+            // EnterƒL[‚ª‰Ÿ‚³‚ê‚½uŠÔ‚ğ”»’è
+            if (keyboard.enterKey.wasPressedThisFrame)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
