@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject gameClearText;
 
+    [SerializeField]
+    InputAction restartAction;
+
     int score = 0;
     int highScore = 0;
     bool isGameOver;
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
         highScore = PlayerPrefs.GetInt(highScoreKey, 0);
         scoreText.text = "SCORE  " + score;
         highScoreText.text = "HIGH SCORE  " + highScore;
+        restartAction.Enable();
     }
 
     // Update is called once per frame
@@ -91,11 +95,8 @@ public class GameManager : MonoBehaviour
     {
         if (waitForRestart)
         {
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
             // EnterÉLÅ[Ç™âüÇ≥ÇÍÇΩèuä‘ÇîªíË
-            if (keyboard.enterKey.wasPressedThisFrame)
+            if (restartAction.WasReleasedThisFrame())
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

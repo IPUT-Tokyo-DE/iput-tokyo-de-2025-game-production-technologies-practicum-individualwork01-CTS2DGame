@@ -1481,6 +1481,23 @@ MonoBehaviour:
   highScoreText: {fileID: 1331558198}
   gameOverText: {fileID: 262092442}
   gameClearText: {fileID: 335643797}
+  restartAction:
+    m_Name: Restart
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5086ca8b-b036-44a9-bb3b-cbf7fe478af4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 06574ce2-6004-46d2-8b83-061c7b205190
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Restart
+      m_Flags: 0
+    m_Flags: 0
 --- !u!4 &1358021557
 Transform:
   m_ObjectHideFlags: 0
